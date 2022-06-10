@@ -13,7 +13,7 @@
 <style>
     input {
         width: 100%;
-        border: none;
+        border: 1px solid #FAAD14;
 
         font-size: 16px;
         font-family: "KdamThmorPro", sans-serif;
@@ -21,7 +21,8 @@
         background-color: transparent;
         color: #FDFDFD;
 
-        padding: 5px;
+        padding: 7px;
         border-radius: 5px;
+        box-sizing: border-box;
     }
 </style>

@@ -3,6 +3,7 @@
     import Input from "../helper/Input.svelte";
     import {pingServer} from "../../api/client";
     import {server, name} from "../../store";
+    import {onMount} from "svelte";
 
     enum Stage {
         SERVER,
@@ -15,7 +16,7 @@
     let stage = Stage.SERVER
     let ping: number
 
-    export let step = async () => {
+    const step = async () => {
         switch (stage) {
             case Stage.SERVER:
                 loading = true
@@ -38,12 +39,27 @@
             case Stage.MATCH:
                 break
         }
+
+        validateValues()
     }
+    const validateValues = () => {
+        // Theoretically we should validate this
+        if(stage === Stage.SERVER && $server != "") stage = Stage.NAME
+        if(stage === Stage.NAME && $name != "") stage = Stage.MATCH
+    }
+    const clear = () => {
+        server.set("")
+        name.set("")
+
+        stage = Stage.SERVER
+    }
+
+    onMount(validateValues)
 </script>
 
 <div class="wrapper">
     <div class="image">
-
+        <span>U</span><br><span>N</span><br><span>O</span>
     </div>
 
     <div class="holder">
@@ -55,7 +71,9 @@
         {:else if stage === Stage.NAME}
             <div class="heading">
                 <h1>Namen angeben</h1>
-                <h5>{ping}ms</h5>
+                {#if ping != null}
+                    <h5>{ping}ms</h5>
+                {/if}
             </div>
             <p>
                 Gib deinen Namen an. Dieser ist für andere Spieler sichtbar
@@ -64,23 +82,25 @@
             <h1>Match auswählen</h1>
             <p>
                 Das Match kann eine belibige Zeichenkette sein. Wenn das Match nicht existiert wird ein neues gestartet
+                <i on:click={clear}>{$server} | {$name} (löschen)</i>
             </p>
         {/if}
 
-        <Input placeholder={stage === Stage.SERVER ? "URL" : stage === Stage.NAME ? "Name" : "ID"} type={stage === Stage.SERVER ? "url" : "text"} bind:value={value} />
-        {#if loading}
-            <h5>Lade...</h5>
-        {:else}
-            <Button on:click={step}>{stage === Stage.SERVER ? "Verbinden" : "Weiter"}</Button>
-        {/if}
+        <form on:submit|preventDefault={step} action="" method="get">
+            <Input placeholder={stage === Stage.SERVER ? "URL" : stage === Stage.NAME ? "Name" : "ID"} type={stage === Stage.SERVER ? "url" : "text"} bind:value={value} />
+            {#if loading}
+                <h5>Lade...</h5>
+            {:else}
+                <Button type="submit">{stage === Stage.SERVER ? "Verbinden" : "Weiter"}</Button>
+            {/if}
+        </form>
     </div>
 </div>
 
 <style lang="less">
     div.wrapper {
         display: grid;
-        grid-template-columns: 500px 450px;
-        grid-template-rows: 600px;
+        grid-template-columns: 400px auto;
 
         position: absolute;
         left: 50%;
@@ -88,9 +108,21 @@
         transform: translate(-50%, -50%);
     }
     div.image {
-        background-color: red;
-    }
+        text-align: center;
+        font-size: 75px;
 
+        // background: linear-gradient(180deg, #FFD037 0%, #1371C0 39%, #95D333 66%, #E0311A 100%);
+        span:nth-of-type(1) {
+            color: #1371C0;
+        }
+        span:nth-of-type(2) {
+            color: #95D333;
+        }
+        span:nth-of-type(3) {
+            color: #E0311A;
+        }
+
+    }
     div.holder {
         padding: 20px;
         text-align: left;
@@ -109,11 +141,18 @@
         margin: 0;
     }
     h5 {
-        color: gray;
+        color: #75520D;
     }
     p {
         font-size: 16px;
         margin: 10px 0;
+
+        i {
+            color: #75520D;
+        }
+        b, i {
+            cursor: pointer;
+        }
     }
     div.heading {
         display: flex;

@@ -19,16 +19,14 @@
             margin: 0;
 
             font-family: "KdamThmorPro", sans-serif;
-            color: #FDFDFD;
+            color: #FAAD14;
+            background: #262626;
 
             height: 100vh;
             width: 100vw;
 
             font-size: 20px;
             overflow: hidden;
-
-            background: rgb(190,18,60);
-            background: linear-gradient(270deg, #e11d48 0%, #9f1239 100%);
         }
 
         *, *:focus {

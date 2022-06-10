@@ -1,7 +1,8 @@
 <script lang="ts">
+    export let type: "submit" | "button" | "rest" = "button"
 </script>
 
-<button on:click>
+<button on:click {type}>
     <slot />
 </button>
 
@@ -14,10 +15,11 @@
         font-size: 16px;
         font-family: "KdamThmorPro", sans-serif;
 
-        background-color: #FDFDFD;
-        color: black;
+        background-color: #FAAD14;
+        color: white;
 
-        padding: 10px;
+        padding: 7px;
         border-radius: 5px;
+        box-sizing: border-box;
     }
 </style>
