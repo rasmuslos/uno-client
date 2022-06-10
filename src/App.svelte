@@ -5,7 +5,7 @@
 
 </script>
 
-{#if $connected}
+{#if $connected || true}
     <Board />
 {:else}
     <Connect />
