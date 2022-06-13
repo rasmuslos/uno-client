@@ -12,8 +12,8 @@
         margin: 0 auto;
         border: none;
 
-        font-size: 16px;
-        font-family: "KdamThmorPro", sans-serif;
+        font-size: 0.8em;
+        font-family: "OpenSans", sans-serif;
 
         background-color: #FAAD14;
         color: white;

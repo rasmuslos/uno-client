@@ -15,8 +15,8 @@
         width: 100%;
         border: 1px solid #FAAD14;
 
-        font-size: 16px;
-        font-family: "KdamThmorPro", sans-serif;
+        font-size: 0.8em;
+        font-family: "OpenSans", sans-serif;
 
         background-color: transparent;
         color: #FDFDFD;

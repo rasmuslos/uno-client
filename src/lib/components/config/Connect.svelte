@@ -58,9 +58,11 @@
 </script>
 
 <div class="wrapper">
+    <!--
     <div class="image">
         <span>U</span><br><span>N</span><br><span>O</span>
     </div>
+    -->
 
     <div class="holder">
         {#if stage === Stage.SERVER}
@@ -100,16 +102,18 @@
 <style lang="less">
     div.wrapper {
         display: grid;
-        grid-template-columns: 400px auto;
+        // grid-template-columns: 15em 25em;
+        grid-template-columns: 27em;
 
         position: absolute;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
     }
+    /*
     div.image {
         text-align: center;
-        font-size: 75px;
+        font-size: 3em;
 
         // background: linear-gradient(180deg, #FFD037 0%, #1371C0 39%, #95D333 66%, #E0311A 100%);
         span:nth-of-type(1) {
@@ -121,31 +125,28 @@
         span:nth-of-type(3) {
             color: #E0311A;
         }
-
     }
+    */
+
     div.holder {
-        padding: 20px;
+        padding: 2em;
         text-align: left;
 
         :global {
             input {
-                margin-top: 25px;
-            }
-            button {
-                margin-top: 10px;
+                margin: 2em 0 1em 0;
             }
         }
     }
 
-    h1 {
+    h1, p {
         margin: 0;
     }
     h5 {
         color: #75520D;
     }
     p {
-        font-size: 16px;
-        margin: 10px 0;
+        font-size: 0.8em;
 
         i {
             color: #75520D;
@@ -157,7 +158,7 @@
     div.heading {
         display: flex;
         align-items: baseline;
-        gap: 10px;
+        gap: 0.5em;
 
         * {
             margin: 0;

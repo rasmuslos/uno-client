@@ -4,7 +4,7 @@
 </script>
 
 <div>
-    <Card />
+    <Card noRotate onClick={alert} />
     <Card card={{
         type: CardType.SIX,
         color: CardColor.BLUE,
@@ -18,12 +18,12 @@
         left: 50%;
         transform: translate(-50%, -50%);
 
-        padding: 60px;
+        padding: 1em 2em;
 
         border: 2px solid #FAAD14;
         border-radius: 15px;
 
         display: flex;
-        gap: 60px;
+        gap: 2em;
     }
 </style>
