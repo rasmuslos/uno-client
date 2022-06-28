@@ -2,8 +2,10 @@
     import Button from "../helper/Button.svelte";
     import Input from "../helper/Input.svelte";
     import {pingServer} from "../../api/client";
-    import {server, name} from "../../store";
+    import {server, name} from "../../util/store";
     import {onMount} from "svelte";
+    import SocketClient from "../../api/socket";
+    import {SOCKET_HOST} from "../../util/env.js";
 
     enum Stage {
         SERVER,
@@ -21,7 +23,7 @@
             case Stage.SERVER:
                 loading = true
                 try {
-                    ping = await pingServer(value)
+                    ping = await pingServer(value.replace("ws", "http"))
                     server.set(value)
 
                     value = ""
@@ -37,6 +39,7 @@
                 stage = Stage.MATCH
                 break
             case Stage.MATCH:
+                SocketClient.shared.connect(value)
                 break
         }
 
@@ -68,7 +71,7 @@
         {#if stage === Stage.SERVER}
             <h1>Verbindung aufbauen</h1>
             <p>
-                Die URL ist die Adresse des Game-Servers. Beispielsweise <b on:click={() => value = "http://localhost:3453"}>http://localhost:3453</b>
+                Die URL ist die Adresse des Game-Servers. Beispielsweise <b on:click={() => value = SOCKET_HOST}>{SOCKET_HOST}</b>
             </p>
         {:else if stage === Stage.NAME}
             <div class="heading">

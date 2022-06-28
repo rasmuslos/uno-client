@@ -1,12 +1,18 @@
 <script lang="ts">
     import Board from "./lib/components/board/Board.svelte";
     import Connect from "./lib/components/config/Connect.svelte";
-    import {connected} from "./lib/store.js";
+    import {connected, phase} from "./lib/util/store.js";
+    import Phase from "./lib/util/phase.js";
+    import Pregame from "./lib/components/helper/Pregame.svelte";
 
 </script>
 
-{#if $connected || true}
-    <Board />
+{#if $connected}
+    {#if $phase === Phase.PREGAME}
+        <Pregame />
+    {:else if $phase === Phase.ONGOING}
+        <Board />
+    {/if}
 {:else}
     <Connect />
 {/if}

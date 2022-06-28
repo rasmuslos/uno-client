@@ -1,0 +1,1 @@
+export const SOCKET_HOST = import.meta.env.VITE_SOCKETHOST

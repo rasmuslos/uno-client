@@ -1,13 +1,13 @@
 <script lang="ts">
     import Card from "./Card.svelte";
-    import {CardColor, CardType} from "../../util/card.js";
+    import {top} from "../../util/store.js";
 </script>
 
 <div>
     <Card noRotate onClick={alert} />
     <Card card={{
-        type: CardType.SIX,
-        color: CardColor.BLUE,
+        type: $top.type,
+        color: $top.color,
     }} />
 </div>
 

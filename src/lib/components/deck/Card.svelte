@@ -13,7 +13,7 @@
 
 <div style="background-color: {getColor(card?.color)}; top: {random()}px; left: {random()}px; transform: rotate({random()}deg)" class:hidden class:noRotate class={size} class:clickable={onClick != null} on:click={onClick}>
     {#if hidden}
-        <span>U</span>
+        <span>O</span>
     {:else}
         <span>{card?.type}</span>
     {/if}

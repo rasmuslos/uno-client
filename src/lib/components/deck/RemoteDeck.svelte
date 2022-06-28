@@ -1,7 +1,6 @@
 <script lang="ts">
     import Card from "./Card.svelte";
 
-    export let playerId: string
     export let name: string
     export let amount: number
     export let orientation: "left" | "top" | "right" = "top"
