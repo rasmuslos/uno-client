@@ -1,6 +1,6 @@
 import {io, Socket} from 'socket.io-client';
 import {get} from "svelte/store";
-import {connected, name, phase, players, self, server, top} from "../util/store";
+import {active, connected, deck, name, phase, players, self, server, top} from "../util/store";
 import Phase from "../util/phase";
 
 class SocketClient {
@@ -57,6 +57,8 @@ class SocketClient {
             phase.set(Phase.ONGOING)
         })
         this.client.on("current_top", top.set)
+        this.client.on("deck", deck.set)
+        this.client.on("active", active.set)
 
         this.client.connect()
     }

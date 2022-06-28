@@ -1,5 +1,6 @@
 <script lang="ts">
     import Card from "./Card.svelte";
+    import {active} from "../../util/store.js";
 
     export let name: string
     export let amount: number
@@ -8,7 +9,7 @@
 
 <div class="wrapper {orientation}">
     <div class="name">
-        <h4>{name}</h4>
+        <h4 class:active={$active.name === name}>{name}</h4>
         <h6>{amount} Karten</h6>
     </div>
     <div class="holder">
@@ -56,7 +57,7 @@
         align-items: baseline;
         gap: 0.5em;
 
-        h6 {
+        h4:not(.active), h6 {
             color: #75520D;
         }
     }

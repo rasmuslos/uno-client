@@ -14,7 +14,19 @@ export const top = writable<{
     color: any,
     type: any,
 }>()
+export const deck = writable<{
+    color: any,
+    type: any,
+}[]>([])
 export const players = writable<Player[]>([])
+export const active = writable<Player>({
+    name: "",
+    id: "",
+    next: "",
+    cards: 0,
+    previous: "",
+    ready: true,
+})
 
 server.subscribe(value => window.localStorage.setItem("server", value))
 name.subscribe(value => window.localStorage.setItem("name", value))

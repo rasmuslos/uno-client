@@ -2,9 +2,11 @@
     import Pile from "../deck/Pile.svelte";
     import RemoteDeck from "../deck/RemoteDeck.svelte";
     import {players, self} from "../../util/store.js";
+    import Deck from "../deck/Deck.svelte";
 </script>
 
 <Pile />
+<Deck />
 
 {#each $players as player, index}
     {#if player.id !== $self.id}

@@ -1,6 +1,6 @@
 <script lang="ts">
     import Card from "./Card.svelte";
-    import {top} from "../../util/store.js";
+    import {active, top} from "../../util/store.js";
 </script>
 
 <div>
