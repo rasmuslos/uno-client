@@ -47,6 +47,9 @@
         &.clickable {
             cursor: pointer;
         }
+        &:hover {
+            z-index: 9;
+        }
     }
 
     span {

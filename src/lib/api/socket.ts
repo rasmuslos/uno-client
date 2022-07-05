@@ -2,6 +2,7 @@ import {io, Socket} from 'socket.io-client';
 import {get} from "svelte/store";
 import {active, connected, deck, name, phase, players, self, server, top} from "../util/store";
 import Phase from "../util/phase";
+import type {Card} from "../util/card";
 
 class SocketClient {
     public static shared: SocketClient = new SocketClient()
@@ -60,11 +61,27 @@ class SocketClient {
         this.client.on("deck", deck.set)
         this.client.on("active", active.set)
 
+        this.client.on("win", () => {
+            alert("Du hast gewonnen")
+            this.client.disconnect()
+        })
+        this.client.on("lose", () => {
+            alert("Du hast verloren")
+            this.client.disconnect()
+        })
+
         this.client.connect()
     }
 
     public ready() {
         this.client.emit("ready")
+    }
+
+    public draw() {
+        this.client.emit("draw")
+    }
+    public play(card: Card) {
+        this.client.emit("card", card)
     }
 }
 

@@ -1,6 +1,7 @@
 <script lang="ts">
     import Card from "./Card.svelte";
     import {active, deck, name, self} from "../../util/store.js"
+    import SocketClient from "../../api/socket.js"
 </script>
 
 <div class="wrapper">
@@ -10,7 +11,9 @@
     </div>
     <div class="holder">
         {#each $deck as card}
-            <Card {card} />
+            <Card {card} onClick={() => {
+                SocketClient.shared.play(card)
+            }} />
         {/each}
     </div>
 </div>
